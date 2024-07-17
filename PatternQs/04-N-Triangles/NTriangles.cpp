@@ -1,8 +1,7 @@
-void nForest(int n) {
-	// Write your code here.
-	for(int i=0; i<n; i++){
-        for(int j=0; j<i+1; j++){
-            cout<<"* ";
+void nTriangle(int n){
+    for(int i=0; i<n; i++){
+        for(int j=1; j<=i+1; j++){
+            cout<<j<<" ";
         }
         cout<<endl;
     }
@@ -14,8 +13,8 @@ void nForest(int n) {
 //     int n;
 //     cin>>n;
 //     for(int i=0; i<n; i++){
-//         for(int j=0; j<i+1; j++){
-//             cout<<"* ";
+//         for(int j=1; j<=i+1; j++){
+//             cout<<j<<" ";
 //         }
 //         cout<<endl;
 //     }
