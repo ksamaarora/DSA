@@ -211,6 +211,58 @@ void explainQueue(){
 
 ### Priority Queue
 
-```c++
+Element having largest value will stay at the top
 
+```c++
+void explainPQ() {
+    // Max Heap
+    priority_queue<int>pq;
+
+    pq.push(5); // {5}
+    pq.push(2); // {5,2}
+    pq.push(8); // {8,5,2}
+    pq.emplace(10); //{10,8,5,2}
+
+    cout<<pq.top(); // prints 10
+
+    pq.pop(); // {8,5,2}
+
+    cout<<pq.top(); // prints 8
+
+    // size swap empty function same as other
+
+    // Minimum Heap: priority queue that stores minimum element at the top
+    priority_queue<int, vector<int>, greater<int>> pq;
+    pq.push(5); // {5}
+    pq.push(2); // {2,5}
+    pq.push(8); //{2,5,8}
+
+    cout<<pq.top(); // prints 2
+}
 ```
+
+### Sets
+
+Sorted | Unique
+
+```c++
+set<int>st;
+st.insert(1); // {1}
+st.emplace(2); // {1,2}
+st.insert(2); // {1,2}
+st.insert(4); // {1,2,4}
+st.insert(3); // {1,2,3,4}
+
+// begin(), end(), size(), empty(), swap() are same as those of above
+
+// {1,2,3,4,5}
+auto it = st.find(3); // returns an iterator which points to the address 3
+
+// {1,2,3,4,5}
+auto it = st.find(6); // 6 not present in the set, thus returns set.end() i.e. an iterator that points after 5 (last element)
+
+set.erase(5); // erases 5
+
+int cnt = st.count(1); // return 1
+```
+
