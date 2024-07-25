@@ -249,9 +249,9 @@ Sorted | Unique
 set<int>st;
 st.insert(1); // {1}
 st.emplace(2); // {1,2}
-st.insert(2); // {1,2}
+st.insert(2); // {1,2} - does not store 2 again
 st.insert(4); // {1,2,4}
-st.insert(3); // {1,2,3,4}
+st.insert(3); // {1,2,3,4} - puts in sorted order
 
 // begin(), end(), size(), empty(), swap() are same as those of above
 
@@ -261,8 +261,79 @@ auto it = st.find(3); // returns an iterator which points to the address 3
 // {1,2,3,4,5}
 auto it = st.find(6); // 6 not present in the set, thus returns set.end() i.e. an iterator that points after 5 (last element)
 
-set.erase(5); // erases 5
-
 int cnt = st.count(1); // return 1
+```
+
+#### Eraser
+- erase element 
+```c++
+set.erase(5); // erases 5
+```
+
+- erase iterator
+```c++
+auto it = st.find(3);
+st.erase(it);
+```
+
+- erase(start,end)
+```c++
+// {1,2,3,4,5}
+auto it1 = st.find(2);
+auto it2 = st.find(4);
+st.erase(it1,it2); // after erase {1,4,5} // end not deleted
+```
+
+### MultiSet
+
+Sorted | But can store Multiple Occurence
+
+```c++
+void explainMultiSet(){
+    // Everything is same as set but just stores duplicates also
+
+    multiset<int>ms;
+    ms.insert(1); // {1}
+    ms.insert(1); // {1,1}
+    ms.insert(1); // {1,1,1}
+
+    ms.erase(1); // all 1's erased
+
+    ms.erase(ms.find(1)); // only a single one erased
+
+    ms.erase(ms.find(), ms.find(1)+2); // only 2 one's rased
+}
+```
+
+### Unordered Set
+
+~~Sorted~~ | Unique
+
+```c++
+void explainSet() {
+    unordered set<int> st;
+    // lower_bound and upper_bound function does not work
+    // rest all functions are same aas above
+    // it does not store in any particular order
+}
+```
+
+### MAPS
+
+Maps are containers which store everything in form of {key,value}
+Keys and values can be of any data type (int, double)
+
+```c++
+void explainMap() {
+
+    map<int, int> mpp;
+
+    map<int, pair<int, int>> mpp;
+
+    map< pair<int, int>, int> mpp;
+
+    mpp[1]=2;
+
+}
 ```
 
