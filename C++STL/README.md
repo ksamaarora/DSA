@@ -3,7 +3,7 @@
 The C++ STL is divided into four main components:
 - Algorithms
 - Containers
-- Functions
+- Functions (not required)
 - Iterators
 
 ### Pairs
@@ -326,14 +326,138 @@ Keys and values can be of any data type (int, double)
 ```c++
 void explainMap() {
 
-    map<int, int> mpp;
+    map<int, int> mpp; // key is int and value is int
 
-    map<int, pair<int, int>> mpp;
+    map<int, pair<int, int>> mpp; // key is int and value are 2 ints
 
-    map< pair<int, int>, int> mpp;
+    map< pair<int, int>, int> mpp; // key is 2 ints and value is 1 int
+    
+    // Maps stores unique keys in sorted order
+    mpp[1]=2; // stores {1,2}
+    mpp.emplace({3,1}); // stores {1,2} {3,1}
 
-    mpp[1]=2;
+    mpp.insert({2,4}); // stores {1,2} {2,4} {3,1}
 
+    mpp[{2,3}]=10; // stored {{2,3},10}
+
+    // Iterate over map
+    for(auto it : mpp){
+        cout<<it.first<<" "<<it.second<<endl;
+    }
+
+    // Cout seperately
+    cout<<mpp[1]; // 2
+    cout<<mpp[2]; // 0 (does not exist)
+
+    auto it = mpp.find(3); // iterator points to 3 of {3,1}
+    cout << *(it).second; // gives value 1
+
+    auto it = mpp.find(5) // points to mpp.end() as 5 not there
+
+    // This is the syntax
+    auto it = mpp.lower_bound(2);
+
+    auto it = mpp.upper_bound(3);
+
+    //erase, swap, size, empty, are same as above 
 }
 ```
+
+### Multimap
+
+Everything is same as map, only it can store multiple keys
+Duplicate keys | Sorted 
+{1,2} {1,6} possible
+
+```c++
+void explainMultiMap() {
+    // only mpp[key] cannot be used here
+}
+```
+
+- Unordered Map: Duplicate Keys | ~~Sorted~~
+
+> ## Algorithms
+
+Given an array of size 4 and u need to sort it 
+- Use sort(start, end) using c++ stl
+
+```c++
+void explainExtra() {
+    sort(a, a+n); // sorts in increasing order
+    sort(v.begin(), v.end());
+
+    sort(a+2, a+4); // {1,3,2,5} -> sorts into {1,3,2,5}
+
+    sort(a, a+n, greater<int>); // sorts in descending order
+}
+```
+
+- **Pair Array** (Task: Sort it according to second element. If second element is same, then sort it according to first element in descending order)
+
+```c++
+pair<int,int> a[] = {{1,2}, {2,1}, {4,1}};
+
+// should be sorted as {{4,1}, {2,1}, {1,2}}
+
+sort(a, a+n, comp); // comp is a self written competitior; it is a boolean function
+```
+
+```c++
+bool comp(pair<int,int> p1, pair<int,int> p2) {
+    if(p1.second<p2.second){
+        return True;
+    }
+    if(p1.second>p2.second){
+        return False;
+    }
+    // they are same
+    if(p1.first>p2.first){
+        return true;
+    }
+    return false;
+}
+```
+
+### __builtin_popcount(): number of set bits i.e. no. of 1's
+
+```c++
+int num=7; // in binary its 111
+int cnt = __builtin_popcount(); // returns 3
+
+long long num = 7635389273633;
+int cnt = __builtin_popcountll();
+```
+
+### next_permutation(start, end)
+
+```c++
+string s = "123";
+// first sort it 
+sort(s.begin(), s.end());
+
+do {
+    cout << s << endl;
+} while(next_permutation(s.begin(), s.end()));
+```
+
+### max_element and min_element (start, end)
+
+```c++
+int maxi = *max_element(a,a+n);
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
