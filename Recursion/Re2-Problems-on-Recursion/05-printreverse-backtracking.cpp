@@ -1,14 +1,15 @@
 #include<iostream>
 using namespace std;
 void f(int i, int n){
-    if(n==0){
+    if(i>n){
         return;
     }
-    cout<<n<<" ";
-    f(i,n-1);
+    f(i+1,n);
+    cout<<i<<" ";
 }
 int main(){
     int n;
     cin>>n;
     f(1,n);
+    return 0;
 }
