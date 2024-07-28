@@ -1,2 +1,3 @@
+#### Using Functional recursion, solve:
 - Reverse an array 
-- Check pallindrome 
+- Check pallindrome (imp)
