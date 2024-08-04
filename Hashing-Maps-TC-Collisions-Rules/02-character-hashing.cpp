@@ -1,5 +1,4 @@
 // METHOD 1: If only lower case letters present in the string
-
 #include<iostream>
 using namespace std;
 int main(){
