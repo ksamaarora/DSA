@@ -46,9 +46,9 @@ int main(){
     int slargest=INT_MIN;
     for(int i=0; i<n; i++){
         if(arr[i]>largest){
-            int temp=largest;
+            slargest=largest;
             largest=arr[i];
-            slargest=temp;
+            
         }
         else if(arr[i]<largest && arr[i]>slargest){
             slargest=arr[i];
