@@ -1,0 +1,3 @@
+- **`result.end()`**: The position in the `result` vector where the new elements will be inserted (specifically, at the end of the vector).
+- **`left.begin()`**: The starting point of the range in the `left` vector that you want to insert.
+- **`left.end()`**: The ending point of the range in the `left` vector (one past the last element) that you want to insert. 
