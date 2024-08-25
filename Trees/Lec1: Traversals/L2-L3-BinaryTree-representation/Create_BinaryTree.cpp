@@ -1,3 +1,5 @@
+// method 2 of initialization creation 
+
 #include<iostream>
 using namespace std;
 
