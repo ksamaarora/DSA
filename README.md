@@ -1,2 +1,2 @@
 # DSA
-Data Structures and Algorithms
+This is a repository on Data Structures and Algorithms
