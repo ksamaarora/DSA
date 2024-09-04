@@ -1,3 +1,5 @@
+// Important
+
 // Pass by Value
 #include <iostream>
 #include <string>
@@ -7,13 +9,13 @@ using namespace std;
 // Pass by value
 void doSomething(string s) {
     s[0] = 't';
-    cout << s << endl;
+    cout << s << endl; // returns taj
 }
 
 int main() {
     string s = "raj";
     doSomething(s);
-    cout << s << endl;
+    cout << s << endl; // returns raj -> original input didnt change as a copy of it was sent to the function
     return 0;
 }
 
