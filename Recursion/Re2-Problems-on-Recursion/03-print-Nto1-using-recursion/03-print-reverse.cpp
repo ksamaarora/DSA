@@ -13,8 +13,8 @@ int main(){
     f(1,n);
 }
 
-// METHOD 2
 
+// METHOD 2
 #include<iostream>
 using namespace std;
 void f(int i,int n){

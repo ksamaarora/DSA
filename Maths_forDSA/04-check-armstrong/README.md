@@ -1,4 +1,4 @@
-### Problem Statement
+### Problem Statement (Premium)
 
 You are given an integer 'n'. Return `true` if 'n' is an Armstrong number, and `false` otherwise.
 

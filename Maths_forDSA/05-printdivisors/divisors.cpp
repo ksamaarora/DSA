@@ -20,6 +20,7 @@ int main() {
 }
 
 // METHOD 2 - MATHEMATICAL OBSERVATION
+// IMPORTANT - Refer notes for explanation
 #include <iostream>
 
 using namespace std;
