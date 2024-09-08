@@ -7,7 +7,7 @@
 
 **Problem Statement:**
 
-Given an integer `n`, calculate the sum of the series `13 + 23 + 33 + 43 + …` till the `n`-th term.
+Given an integer `n`, calculate the sum of the series `1^3 + 2^3 + 3^3 + 4^3 + …` till the `n`-th term.
 
 **Examples:**
 
