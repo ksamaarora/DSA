@@ -4,12 +4,10 @@ using namespace std;
 int main(){
     string s;
     cin>>s;
-
     int hash[26]={0};
     for(int i=0; i<s.size(); i++){
-        hash[s[i]-'a']++;
+        hash[s[i]-'a']+=1;
     }
-
     int q;
     cin>>q;
     while(q--){
@@ -23,17 +21,15 @@ int main(){
 
 
 // METHOD 2: If string has any character
-#include<isotream>
+#include<iostream>
 using namespace std;
 int main(){
     string s;
     cin>>s;
-
     int hash[256]={0};
     for(int i=0; i<s.size(); i++){
-        hash[s[i]]++;
+        hash[s[i]]+=1;
     }
-
     int q;
     cin>>q;
     while(q--){
@@ -53,16 +49,13 @@ using namespace std;
 int main(){
     string s;
     cin>>s;
-
     map<char,int>mpp;
     for(int i=0; i<s.size(); i++){
         mpp[s[i]]++;
     }
-
     for(auto it:mpp){
         cout<<it.first<<"->"<<it.second<<endl;
     }
-
     int q;
     cin>>q;
     while(q--){
