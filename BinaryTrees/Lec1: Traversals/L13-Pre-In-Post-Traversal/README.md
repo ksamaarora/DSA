@@ -1,5 +1,5 @@
 ### Explanation of the Code:
-This code is designed to perform preorder, inorder, and postorder traversals of a binary tree using a single stack. The tree traversal is handled iteratively without recursion.
+[Refer to Link](https://www.youtube.com/watch?v=ySp2epYvgTE)
 
 - **Preorder Traversal (pre)**: Visit the root node, then the left subtree, and finally the right subtree.
 - **Inorder Traversal (in)**: Visit the left subtree, then the root node, and finally the right subtree.

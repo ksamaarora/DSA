@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
-
 using namespace std;
 
+// Get the minimum element and swap it with the first element of the unsorted part
 void selection_sort(int n, vector<int>& arr) {
     for (int i = 0; i < n - 1; i++) {
         for (int j = i + 1; j < n; j++) {
@@ -19,6 +19,7 @@ void selection_sort(int n, vector<int>& arr) {
     cout << endl;
 }
 
+// Push the max to the last by adjacent swaps
 void bubble_sort(int n, vector<int>& arr){
     for(int i=n-1; i>=0; i--){
         int didswap=0;
@@ -36,6 +37,7 @@ void bubble_sort(int n, vector<int>& arr){
     cout<<endl;
 }
 
+// Takes an element and places it in correct order
 void insertion_sort(int n, vector<int>& arr){
     for(int i=0; i<n; i++){
         int j=i;
