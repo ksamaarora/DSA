@@ -1,67 +1,149 @@
-#include <iostream>
-#include <vector>
+#include<iostream>
+#include<vector>
 using namespace std;
-
-struct Node {
+struct Node{
     int data;
     Node* next;
-    Node(int data1, Node* next1 = nullptr) {
-        data = data1;
-        next = next1;
+    Node(int data1, Node* next1=nullptr){
+        data=data1;
+        next=next1;
     }
 };
-
-Node* convertarr2LL(vector<int> &arr) {
-    Node* head = new Node(arr[0]);
-    Node* mover = head;
-    for (int i = 1; i < arr.size(); i++) { 
-        Node* temp = new Node(arr[i]);
-        mover->next = temp;  
-        mover = mover->next;
+Node* convertArr2LL(vector<int> &arr){
+    Node* head=new Node(arr[0]);
+    Node* mover=head;
+    for(int i=1; i<arr.size(); i++){
+        Node* temp=new Node(arr[i]);
+        mover->next=temp;
+        mover=mover->next;
     }
     return head;
 }
-
-void printLL(Node* head) {
-    Node* temp = head;
-    while (temp != nullptr) {
-        cout << temp->data;
-        if (temp->next != nullptr) cout << " -> ";
-        temp = temp->next;
-    }
-    cout << endl;
-}
-
-Node* removeHead(Node* head) {
-    if (head == nullptr) return head;
-    Node* temp = head;
-    head = head->next;
-    delete temp;
-    return head;
-}
-
-Node* removetail(Node* head){
-    if(head==nullptr || head->next=nullptr) return nullptr;
+void printLL(Node* head){
     Node* temp=head;
-    while(temp->next->next!=nullptr){
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        if(temp->next!=NULL)cout<<"->";
         temp=temp->next;
     }
-    Node* del=temp->next;
-    temp->next=nullptr;
-    delete(del);
+    cout<<endl;
+}
+// Delete Head
+Node* deleteHead(Node* head){
+    if(head==NULL) return head;;
+    Node* temp=head;
+    head=head->next;
+    delete(temp);
     return head;
 }
+// Delete Tail
+Node* removeTail(Node* head){
+    if(head==NULL || head->next==NULL){
+        delete head;
+        return NULL;
+    }
+    Node* temp=head;
+    while(temp->next->next!=NULL){
+        temp=temp->next;
+    }
+    delete(temp->next);
+    temp->next=NULL;
+    return head; // last statement will always be this 
+}
+// Delete kth element
+Node* removek(Node* head, int k){
+    if(head==NULL) return head;
+    if(k==1){
+        Node* temp=head;
+        head=head->next;
+        delete(temp);
+        return head;
+    }
+    int cnt=1;
+    Node* temp=head;
+    Node* prev=NULL;
+    while(temp!=NULL){
+        if(cnt==k){
+            prev->next=prev->next->next;
+            delete(temp);
+            break;
+        }
+        prev=temp;
+        temp=temp->next;
+        cnt++;
+    }
+    return head;
+}
+// Delete element
+Node* remove_element(Node* head, int k){
+    if(head==NULL) return head;
+    if(head->data==k){
+        Node* temp=head;
+        head=head->next;
+        delete(temp);
+        return head;
+    }
+    Node* temp=head;
+    Node* prev=NULL;
+    while(temp!=NULL){
+        if(temp->data==k){
+            prev->next=prev->next->next;
+            delete(temp);
+            break;
+        }
+        prev=temp;
+        temp=temp->next;
+    }
+    return head;
+}
+// Insert Head
+Node* insertHead(Node* head, int val){
+    Node* temp=new Node(val, head);
+    return temp;
+}
+// Insert at Tail
+Node* insertTail(Node* head, int val){
+    if(head==NULL) return new Node(val,NULL);
+    Node* temp=head;
+    while(temp->next!=NULL){
+        temp=temp->next;
+    }
+    Node* newNode=new Node(val,NULL);
+    temp->next=newNode;
+    return head;
+}
+// Insert at a kth element
+Node* insertk(Node* head, int k){
+    int cnt=1;
+    Node* temp=head;
+    Node* prev=NULL;
+    while(cnt!=k)
 
-int main() {
+}
+int main(){
     // vector<int> arr = {12, 5, 8, 7}; // compiler older version in my mac so this doesnt run 
     vector<int> arr;
     arr.push_back(12);
     arr.push_back(5);
     arr.push_back(8);
-    arr.push_back(7);
-    Node* head = convertarr2LL(arr);
-    head=removeHead(head);
-    removetail(head);
+    arr.push_back(9);
+    arr.push_back(4);
+    arr.push_back(2);
+    arr.push_back(1);
+    Node* head=convertArr2LL(arr);
+    printLL(head);
+    head=deleteHead(head);
+    printLL(head);
+    head=removeTail(head);
+    printLL(head);
+    head=removek(head,3);
+    printLL(head);
+    head=remove_element(head,5);
+    printLL(head);
+    head=insertHead(head,10);
+    printLL(head);
+    head=insertTail(head,100);
     printLL(head);
     return 0;
 }
+
