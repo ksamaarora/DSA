@@ -113,12 +113,64 @@ Node* insertTail(Node* head, int val){
     return head;
 }
 // Insert at a kth element
-Node* insertk(Node* head, int k){
+Node* insertk(Node* head, int k, int val){
+    if(head==NULL){
+        if(k==1){
+            Node* newNode= new Node(val,NULL);
+            return newNode;
+        }
+        else{
+            return NULL;
+        }
+    }
+    if(k==1){
+        Node* temp=new Node(val,head);
+        return temp;
+    }
     int cnt=1;
     Node* temp=head;
-    Node* prev=NULL;
-    while(cnt!=k)
 
+    // Using previous (my method)
+    // Node* prev=NULL;
+    // while(cnt!=k && temp!=NULL){
+    //     prev=temp;
+    //     temp=temp->next;
+    //     cnt++;
+    // }
+    // Node* newNode=new Node(val, temp);
+    // prev->next=newNode;
+    // newNode->next=temp;
+    // return head;
+
+    // Strivers method
+    while(temp!=NULL){
+        if(cnt==k-1){
+            Node* newNode= new Node(val,temp->next);
+            temp->next=newNode;
+        }
+        temp=temp->next;
+        cnt++;
+    }
+    return head;
+}
+// Insert before value
+Node* insertBeforeValue(Node* head, int val, int element){
+    if(head==NULL){
+        return NULL;
+    }
+    if(head->data==element){
+        return new Node(val,head);
+    }
+    Node* temp=head;
+    while(temp!=NULL){
+        if(temp->next->data==element){
+            Node* newNode= new Node(val, temp->next);
+            temp->next=newNode;
+            return newNode;
+        }
+        temp=temp->next;
+    }
+    return head;
 }
 int main(){
     // vector<int> arr = {12, 5, 8, 7}; // compiler older version in my mac so this doesnt run 
@@ -144,6 +196,19 @@ int main(){
     printLL(head);
     head=insertTail(head,100);
     printLL(head);
+    insertk(head,3,5);
+    printLL(head);
+    insertBeforeValue(head,23,10);
+    printLL(head);
     return 0;
 }
 
+// 12 ->5 ->8 ->9 ->4 ->2 ->1 
+// 5 ->8 ->9 ->4 ->2 ->1 
+// 5 ->8 ->9 ->4 ->2 
+// 5 ->8 ->4 ->2 
+// 8 ->4 ->2 
+// 10 ->8 ->4 ->2 
+// 10 ->8 ->4 ->2 ->100 
+// 10 ->8 ->5 ->4 ->2 ->100 
+// 10 ->8 ->5 ->4 ->2 ->100 
