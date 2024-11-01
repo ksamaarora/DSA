@@ -1,82 +1,59 @@
-// Brute force solution
-
-class Solution{
-    public:
-    //arr1,arr2 : the arrays
-    // n, m: size of arrays
-    //Function to return a list containing the union of the two arrays. 
-    vector<int> findUnion(int arr1[], int arr2[], int n, int m)
-    {
-        //Your code here
-        //return vector with correct order of elements
+class Solution {
+  public:
+    // a,b : the arrays
+    // Function to return a list containing the union of the two arrays.
+    vector<int> findUnion(vector<int> &a, vector<int> &b) {
+        // Your code here
+        // return vector with correct order of elements
+        
+        // Method 1: Brute force
         set<int> st;
-        for(int i=0; i<n; i++){
-            st.insert(arr1[i]);
+        int n1=a.size();
+        int n2=b.size();
+        for(int i=0; i<n1; i++){
+            st.insert(a[i]);
         }
-        for(int i=0; i<m; i++){
-            st.insert(arr2[i]);
+        for(int i=0; i<n2; i++){
+            st.insert(b[i]);
         }
-        vector<int> temp;
+        vector<int> Union;
         for(auto it:st){
-            temp.push_back(it);
+            Union.push_back(it);
         }
-        return temp;
-    }
-};
-
-// Optimal Solution 
-
-class Solution{
-    public:
-    // arr1, arr2: the arrays
-    // n, m: size of arrays
-    // Function to return a list containing the union of the two arrays.         
-    vector<int> findUnion(int arr1[], int arr2[], int n, int m) {
-        int i = 0, j = 0; 
-        vector<int> unionarr;
-
-        // Traverse both arrays
-        while (i < n && j < m) {
-            // If element in arr1 is smaller, add it to the union
-            if (arr1[i] < arr2[j]) {
-                if (unionarr.empty() || arr1[i] != unionarr.back()) {
-                    unionarr.push_back(arr1[i]);
+        return Union;
+        
+        // Method 2: Optimal Soln - 2 pointer Approach
+        int n1=a.size();
+        int n2=b.size();
+        int i=0; 
+        int j=0;
+        vector<int> Union;
+        while(i<n1 && j<n2){
+            if(a[i]<=b[j]){
+                if(Union.size()==0 || Union.back()!=a[i]){
+                    Union.push_back(a[i]);
                 }
                 i++;
             }
-            // If element in arr2 is smaller, add it to the union
-            else if (arr2[j] < arr1[i]) {
-                if (unionarr.empty() || arr2[j] != unionarr.back()) {
-                    unionarr.push_back(arr2[j]);
+            else{
+                if(Union.size()==0 || Union.back()!=b[j]){
+                    Union.push_back(b[j]);
                 }
-                j++;
-            }
-            // If elements are equal, add any one and move both pointers
-            else {
-                if (unionarr.empty() || arr1[i] != unionarr.back()) {
-                    unionarr.push_back(arr1[i]);
-                }
-                i++;
                 j++;
             }
         }
-
-        // Store remaining elements of arr1
-        while (i < n) {
-            if (unionarr.empty() || arr1[i] != unionarr.back()) {
-                unionarr.push_back(arr1[i]);
+        while(i<n1){
+            if(Union.size()==0 || Union.back()!=a[i]){
+                    Union.push_back(a[i]);
             }
             i++;
         }
-
-        // Store remaining elements of arr2
-        while (j < m) {
-            if (unionarr.empty() || arr2[j] != unionarr.back()) {
-                unionarr.push_back(arr2[j]);
+        while(j<n2){
+            if(Union.size()==0 || Union.back()!=b[j]){
+                    Union.push_back(b[j]);
             }
             j++;
         }
-
-        return unionarr;
+        return Union;
     }
 };

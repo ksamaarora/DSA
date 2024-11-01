@@ -1,4 +1,50 @@
-//Better Solution
+// Method 1: Brute Force Solution 
+// TC of function: O(d x (n-1)) = O(d x n)
+// SC: O(1)
+#include<iostream>
+using namespace std;
+void leftRotateDplaces(int arr[], int n, int d){
+    while(d!=0){
+        int temp=arr[0];
+        for(int i=1; i<n; i++){
+            arr[i-1]=arr[i];
+        }
+        arr[n-1]=temp;
+        d--;
+    }
+}
+int main(){
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0; i<n; i++){
+        cin>>arr[i];
+    }
+    int d;
+    cin>>d;
+    leftRotateDplaces(arr,n,d);
+    for(int i=0; i<n; i++){
+        cout<<arr[i]<<" ";
+    }
+    return 0;
+}
+
+// Better Brute Force 
+int d=d%n; 
+// Why use d % n?:
+
+// - When d > n, rotating the array n times brings it back to its original form.
+// - To avoid unnecessary full rotations, use d % n, which directly computes the effective number of rotations.
+// - This prevents extra rotations and keeps time complexity optimal for larger values of d.
+
+// Time Complexity (TC):
+// O(d * n) (without optimization), but if d > n, it will reduce to O((d % n) * n).
+
+// Space Complexity (SC):
+// O(1) since no additional space is used apart from variables.
+
+
+// //Better Solution
 #include<iostream>
 #include<vector>
 using namespace std;
@@ -18,7 +64,7 @@ void leftRotate(int arr[], int n, int d){
         arr[i]=temp[i-(n-d)];
     } // O(d)
 }
-// TC=O(n+d) SC=O(d)
+// // TC=O(n+d) SC=O(d)
 
 int main(){
     int n;
@@ -35,7 +81,7 @@ int main(){
 }
 
 
-// MOST OPTIMAL SOLUTION
+// // MOST OPTIMAL SOLUTION
 #include<iostream>
 using namespace std;
 void leftRotate(int arr[], int n, int d){
@@ -56,5 +102,5 @@ int main(){
     }
     return 0;
 }
-// TC: O(2n)
-// SC: O(1)
+// // TC: O(2n)
+// // SC: O(1)
