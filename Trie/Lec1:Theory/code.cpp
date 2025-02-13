@@ -1,6 +1,0 @@
-class Trie{
-    public:
-    Trie(){
-
-    }
-};
