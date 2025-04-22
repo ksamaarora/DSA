@@ -1,0 +1,57 @@
+//── Node structure ────────────────────────────────────────────────────────────
+Node:
+    links[26]  ← array of Node pointers, all initialized to NULL
+    is_word    ← boolean flag, initialized to false
+
+    containsKey(ch):
+        return (links[index_of(ch)] ≠ NULL)
+
+    put(ch):
+        // create a new child node for character ch
+        links[index_of(ch)] ← new Node()
+
+    get(ch):
+        return links[index_of(ch)]
+
+    markEnd():
+        is_word ← true
+
+    isEnd():
+        return is_word
+
+//── Trie class ────────────────────────────────────────────────────────────────
+Trie:
+    root  ← new Node()
+
+    insert(word):
+        node ← root
+        for each character ch in word:
+            if NOT node.containsKey(ch):
+                node.put(ch)            // link in a new Node for ch
+            node ← node.get(ch)        // move down into that node
+        node.markEnd()                 // mark the last node as end-of-word
+
+    search(word):
+        node ← root
+        for each character ch in word:
+            if NOT node.containsKey(ch):
+                return false           // missing a required branch
+            node ← node.get(ch)
+        return node.isEnd()            // only true if exactly a word
+
+    startsWith(prefix):
+        node ← root
+        for each character ch in prefix:
+            if NOT node.containsKey(ch):
+                return false
+            node ← node.get(ch)
+        return true                    // we found all prefix letters
+
+//── Usage example ──────────────────────────────────────────────────────────
+trie ← new Trie()
+trie.insert("apple")
+assert trie.search("apple")     = true
+assert trie.search("app")       = false
+assert trie.startsWith("app")   = true
+trie.insert("app")
+assert trie.search("app")       = true

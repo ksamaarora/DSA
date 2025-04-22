@@ -1,0 +1,18 @@
+Function reverse(x):
+    Initialize reverse_num to 0
+
+    While x is not 0:
+        Get the last digit: remainder = x % 10
+
+        Check for overflow:
+            If reverse_num > INT_MAX / 10 OR 
+               (reverse_num == INT_MAX / 10 AND remainder > 7):
+                Return 0
+            If reverse_num < INT_MIN / 10 OR 
+               (reverse_num == INT_MIN / 10 AND remainder < -8):
+                Return 0
+
+        Update reverse_num: reverse_num = reverse_num * 10 + remainder
+        Remove the last digit from x: x = x / 10
+
+    Return reverse_num

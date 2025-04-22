@@ -1,0 +1,72 @@
+// Node Structure
+Node:
+    links[26]         ← array to store child nodes for each character 'a' to 'z'
+    isWord            ← boolean flag to mark end of a word (initialized to false)
+
+    containsKey(ch):
+        return links[charIndex(ch)] is not NULL
+
+    put(ch, node):
+        links[charIndex(ch)] ← node
+
+    get(ch):
+        return links[charIndex(ch)]
+
+    setEnd():
+        isWord ← true
+
+    isEnd():
+        return isWord
+
+
+// Trie Class
+Trie:
+    root ← new Node()
+
+    insert(word):
+        node ← root
+        for each character ch in word:
+            if node does not containKey(ch):
+                node.put(ch, new Node())
+            node ← node.get(ch)
+        node.setEnd()
+
+    checkPrefix(word):
+        node ← root
+        for each character ch in word:
+            if node containsKey(ch):
+                node ← node.get(ch)
+                if node is not end of a word:
+                    return false
+            else:
+                return false
+        return true
+
+
+// Main Solution
+completeString(words):
+    trie ← new Trie
+
+    // Insert all words into Trie
+    for each word in words:
+        trie.insert(word)
+
+    longest ← empty string
+
+    // Check for complete strings
+    for each word in words:
+        if trie.checkPrefix(word):
+            if word is longer than longest:
+                longest ← word
+            else if word is same length as longest and word is lexicographically smaller:
+                longest ← word
+
+    if longest is empty:
+        return "None"
+    else:
+        return longest
+
+
+// Utility
+charIndex(ch):
+    return ASCII value of ch minus ASCII value of 'a'

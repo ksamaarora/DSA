@@ -1,0 +1,69 @@
+//── Node structure ────────────────────────────────────────────────────────────
+Node:
+    links[26]        ← array of pointers to Node, all initialized to NULL
+    countPrefix      ← integer, initialized to 0
+    countEnd         ← integer, initialized to 0
+    isWord           ← boolean flag, initialized to false
+
+    containsKey(ch):
+        // Does this node have a child for character ch?
+        return links[indexOf(ch)] ≠ NULL
+
+    put(ch, newNode):
+        // Link character ch to the given newNode
+        links[indexOf(ch)] ← newNode
+
+    get(ch):
+        // Follow the link for character ch
+        return links[indexOf(ch)]
+
+    markEnd():
+        isWord ← true
+
+//── Trie class ────────────────────────────────────────────────────────────────
+Trie:
+    root ← new Node()
+
+    insert(word):
+        node ← root
+        for each character ch in word:
+            if NOT node.containsKey(ch):
+                node.put(ch, new Node())
+            node ← node.get(ch)
+            node.countPrefix ← node.countPrefix + 1
+        node.markEnd()
+        node.countEnd ← node.countEnd + 1
+
+    countWordsEqualTo(word):
+        node ← root
+        for each character ch in word:
+            if NOT node.containsKey(ch):
+                return 0
+            node ← node.get(ch)
+        return node.countEnd
+
+    countWordsStartingWith(prefix):
+        node ← root
+        for each character ch in prefix:
+            if NOT node.containsKey(ch):
+                return 0
+            node ← node.get(ch)
+        return node.countPrefix
+
+    erase(word):
+        node ← root
+        for each character ch in word:
+            if node.containsKey(ch):
+                node ← node.get(ch)
+                node.countPrefix ← node.countPrefix - 1
+            else:
+                // word not present—(per problem, this won't happen)
+                return
+        node.countEnd ← node.countEnd - 1
+        if node.countEnd = 0:
+            node.isWord ← false
+
+//── Utility ──────────────────────────────────────────────────────────────────
+indexOf(ch):
+    // Convert 'a'..'z' into 0..25
+    return ASCII(ch) - ASCII('a')
